@@ -1,0 +1,88 @@
+﻿@model IEnumerable<Complexs.Models.CustomersModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<!-- Facts Start -->
+<div class="container-xxl py-5">
+    <div class="container pt-5">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+
+                <p>
+                    @*@Html.ActionLink("Create New", "Create")*@
+                    <a href="@Url.Action("ADD","CustomersMVC")" class="btn btn-danger"><i class="fa fa-plus-square"></i>Çalışan EKLE</a>
+                </p>
+
+                <div class="fact-item text-center bg-light h-100 p-5 pt-0">
+                    <div class="fact-icon">
+                        <img src="img/icons/icon-2.png" alt="Icon">
+                    </div>
+                    <table class="table table-striped">
+                        <thead class="table-danger">
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.NameSurname)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Age)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Phone)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Mail)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Address)
+                                </th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.NameSurname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Age)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Mail)
+                                </td>
+                                <td>
+                                    <a href="@Url.Action("ADD","CustomersMVC",new {id=item.CustomerId})" class="btn btn-default"><i class="fa fa-pencil-square"></i>Edit</a>
+                                    <a onclick="Sil(@item.CustomerId)" class="btn btn-default"><i class="fa fa-pencil-trash"></i>Sil</a>
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                    @section scripts{
+                        <script>
+                            $(function () {
+                                var successMessage = '@TempData["SuccessMessage"]';
+
+                                if (successMessage != '')
+                                    alertify.success(successMessage);
+                            });
+                            function Sil(id) {
+                                alertify.confirm('DELETE', 'Do you want to delete customer information?', function () {
+                                    window.location.href = '@Url.Action("Delete", "CustomersMVC")/' + id;
+                                }, null);
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Facts End -->
+}
+

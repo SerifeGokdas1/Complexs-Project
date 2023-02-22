@@ -1,0 +1,71 @@
+﻿@model Complexs.Models.CustomersModel
+@{
+    ViewBag.Title = "ADD";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Contact Start -->
+<div class="container-xxl py-5">
+    <div class="container">
+        <div class="text-center mx-auto mb-5 wow fadeInUp" data-wow-delay="0.1s" style="max-width: 600px;">
+            <h4 class="section-title">Contact Us</h4>
+            <h1 class="display-5 mb-4">If You Have Any Query, Please Feel Free Contact Us</h1>
+        </div>
+        <div class="row g-5">
+            <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.5s">
+                <form>
+                    <div class="row g-3">
+                        @using (Html.BeginForm())
+                        {
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    @Html.LabelFor(model => model.NameSurname)<br /><br /><br />
+                                    @Html.EditorFor(model => model.NameSurname)<br /><br />
+                                    @Html.ValidationMessageFor(model => model.NameSurname)
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    @Html.LabelFor(model => model.Age)<br />
+                                    @Html.EditorFor(model => model.Age)
+                                    @Html.ValidationMessageFor(model => model.Age)
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    @Html.LabelFor(model => model.Phone)
+                                    @Html.EditorFor(model => model.Phone)
+                                    @Html.ValidationMessageFor(model => model.Phone)
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    @Html.LabelFor(model => model.Mail)
+                                    @Html.EditorFor(model => model.Mail)
+                                    @Html.ValidationMessageFor(model => model.Mail)
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-floating">
+                                    @Html.LabelFor(model => model.Address)
+                                    @Html.EditorFor(model => model.Address)
+                                    @Html.ValidationMessageFor(model => model.Address)
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <input type="submit" value="Add" class="btn accordion-button" />
+                                <input type="reset" value="Reset" class=" btn accordion-button" />
+                            </div>
+                        }
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Contact End -->
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval");
+}
+
+
